@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.training.testapp.data.model.User
 import com.training.testapp.data.wrapper.NetworkResult
-import com.training.testapp.repository.RepositoryImpl
+import com.training.testapp.repository.RepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
-class MainViewModel(repository: RepositoryImpl) : ViewModel() {
+class MainViewModel(repository: RepositoryInterface) : ViewModel() {
 
     val userData: StateFlow<NetworkResult<List<User>>> =
         repository.getApiData()

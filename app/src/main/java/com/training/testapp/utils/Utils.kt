@@ -2,6 +2,9 @@ package com.training.testapp.utils
 
 import android.content.Context
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.training.testapp.data.model.User
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -38,4 +41,11 @@ fun readJsonFromAssets(context: Context, path: String): String {
         e.printStackTrace()
         return ""
     }
+}
+
+fun getUsersData(context: Context):List<User>{
+    val gson = Gson()
+    val type = object : TypeToken<List<User>>() {}.type
+    val jsonString = readJsonFromAssets(context, "user.json")
+    return gson.fromJson(jsonString, type)
 }

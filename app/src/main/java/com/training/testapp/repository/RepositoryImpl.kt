@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.flow
 
 class RepositoryImpl(
     private val dataSource: DataSource
-) {
-    fun getApiData(): Flow<NetworkResult<List<User>>> = flow {
+) : RepositoryInterface {
+    override fun getApiData(): Flow<NetworkResult<List<User>>> = flow {
         delay(2000)
         emit(dataSource.getApiData())
     }
