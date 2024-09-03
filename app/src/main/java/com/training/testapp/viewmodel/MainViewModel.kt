@@ -15,7 +15,7 @@ class MainViewModel(repository: RepositoryInterface) : ViewModel() {
         repository.getApiData()
             .stateIn(
                 scope = viewModelScope,
-                initialValue = NetworkResult.Loading(true),
+                initialValue = NetworkResult.Loading,
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000)
             )
 

@@ -32,7 +32,7 @@ class MainViewModelTest {
         val mockData = listOf(User(id = 1, title = "John Doe"))
         val expectedResult = NetworkResult.Success(mockData)
         coEvery { repository.getApiData() } returns flow {
-            emit(NetworkResult.Loading(true))
+            emit(NetworkResult.Loading)
             emit(expectedResult)
         }
 
@@ -42,7 +42,7 @@ class MainViewModelTest {
         // Assert: Use Turbine to test the flow emissions
         viewModel.userData.test {
             // First emission should be Loading
-            assertEquals(NetworkResult.Loading(true), awaitItem())
+            assertEquals(NetworkResult.Loading, awaitItem())
 
             // Second emission should be Success
             assertEquals(expectedResult, awaitItem())

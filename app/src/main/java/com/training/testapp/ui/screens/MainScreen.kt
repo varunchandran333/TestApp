@@ -22,7 +22,7 @@ private fun Render(
 ) {
     when (uiState) {
         is NetworkResult.Loading -> {
-            Log.d(KOIN_TAG, "Loading  -->" + uiState.isLoading.toString())
+            Log.d(KOIN_TAG, "Loading  -->$uiState")
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,

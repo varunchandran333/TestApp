@@ -3,12 +3,11 @@ package com.training.testapp.data.wrapper
 import retrofit2.HttpException
 import retrofit2.Response
 
-sealed class NetworkResult<T : Any> {
-
-    class Loading<T : Any>(val isLoading: Boolean) : NetworkResult<T>()
-    class Success<T : Any>(val data: T) : NetworkResult<T>()
-    class Error<T : Any>(val code: Int, val message: String?) : NetworkResult<T>()
-    class Exception<T : Any>(val e: Throwable) : NetworkResult<T>()
+sealed class NetworkResult<out T> {
+    data class Success<out T>(val data: T) : NetworkResult<T>()
+    data class Error(val code: Int, val message: String?) : NetworkResult<Nothing>()
+    data object Loading : NetworkResult<Nothing>()
+    data class Exception(val e: Throwable) : NetworkResult<Nothing>()
 }
 
 suspend fun <T : Any> handleApi(
